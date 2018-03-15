@@ -4,6 +4,8 @@ import {getMetricMetaInfo, timeToString} from '../utils/helpers'
 import MySlider from './MySlider'
 import MyStepper from './MyStepper'
 import DateHeader from './date'
+import {Ionicons} from '@expo/vector-icons'
+import TextButton from './TextButton'
 
 function SubmitBtn ({onPress}){
     return (
@@ -13,7 +15,6 @@ function SubmitBtn ({onPress}){
         </TouchableOpacity>
     )
 }
-
 
 export default class AddEntry extends Component {
 
@@ -64,10 +65,29 @@ export default class AddEntry extends Component {
             eat:0,
         }))
     }
+    reset = () => {
+        const key = timeToString();
+
+    }
 
     render(){
 
         const metaInfo = getMetricMetaInfo();
+
+        if(this.props.alreadyLogged){
+            return(
+            <View>
+                <Ionicons
+                    name='ios-happy-outline'
+                    size={100}
+                    />
+                <Text>You already logged your information today</Text>
+                <TextButton onPress={this.reset}>
+                reset
+                </TextButton>
+            </View>
+            )
+        }
         return(
             <View>
                 <DateHeader
