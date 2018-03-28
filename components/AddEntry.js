@@ -14,7 +14,7 @@ import { purple, pink, red } from '../utils/colors';
 function SubmitBtn ({onPress}){
     return (
         <TouchableOpacity
-        style={Platform.OS === 'ios' ? styles.iosSubmitBtn : sytles.androidSubmitBtn}
+        style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.androidSubmitBtn}
         onPress={onPress}>
         <Text style={styles.submitBtnText}>SUBMIT</Text>
         </TouchableOpacity>
@@ -25,7 +25,7 @@ class AddEntry extends Component {
 
     state = {
         run:0,
-        bike:50,
+        bike:0,
         swin:0,
         sleep:0,
         eat:0,
@@ -99,7 +99,7 @@ class AddEntry extends Component {
                     />
                 <Text>You already logged your information today</Text>
                 <TextButton style={{padding: 10}} onPress={this.reset}>
-                reset
+                Reset
                 </TextButton>
             </View>
             )
@@ -108,7 +108,6 @@ class AddEntry extends Component {
             <View style= {styles.container}>
                 <DateHeader
                     date = {(new Date()).toLocaleDateString()} />
-                    <Text>{JSON.stringify(this.state)}</Text>
                 {Object.keys(metaInfo).map((key)=>{
                     const {getIcon, type, ...rest} = metaInfo[key];
                     const value = this.state[key];
@@ -152,10 +151,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroudColor: 'white',
+        backgroundColor: 'white',
     },
     androidSubmitBtn:{
-        backgroudColor: purple,
+        backgroundColor: purple,
         padding: 10,
         paddingLeft: 30,
         paddingRight: 30,
